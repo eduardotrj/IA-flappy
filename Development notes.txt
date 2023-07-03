@@ -1,5 +1,5 @@
 
 
-First install:
+Dependencies required:
     • neat-python
     • pygame
