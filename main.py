@@ -194,9 +194,37 @@ class Base:
     def draw(self, win):
         win.blit(self.IMG, (self.x1, self.y))
         win.blit(self.IMG, (self.x2, self.y))
+        
+        
+        #!dd●●●●●●●●●●●●●●●●●●●●●●●●●
+class Background:
+    VEL = 1
+    WIDTH = BG_IMG.get_width()
+    IMG = BG_IMG
+    
+    def __init__(self, y) -> None:
+        self.y = y
+        self.x1 = 0
+        self.x2 = self.WIDTH
+        
+    def move(self):
+        """ Print 2 images and move one after another to generate infinite aspect.
+        """
+        self.x1 -= self.VEL
+        self.x2 -= self.VEL
+        
+        if self.x1 + self.WIDTH < 0:
+            self.x1 = self.x2 + self.WIDTH
+            
+        if self.x2 + self.WIDTH < 0:
+            self.x2 = self.x1 + self.WIDTH
+            
+    def draw(self, win):
+        win.blit(self.IMG, (self.x1, self.y))
+        win.blit(self.IMG, (self.x2, self.y))
 
     
-def draw_window(win, bird, pipes, base):
+def draw_window(win, background, bird, pipes, base):
     """
         Draw the window with the elements.
 
@@ -204,11 +232,11 @@ def draw_window(win, bird, pipes, base):
         win (_type_): _description_
         bird (_type_): _description_
     """
-    win.blit(BG_IMG, (0,0))
+    #win.blit(BG_IMG, (0,0))   # It could add a slow speed on the background.
     
     for pipe in pipes:
         pipe.draw(win)
-        
+    background.draw(win)    
     base.draw(win)
     
     bird.draw(win)
@@ -216,8 +244,10 @@ def draw_window(win, bird, pipes, base):
     
     
 def main():
+    
     bird = Bird(230,350)
-    base = Base(730)
+    background = Background(0)
+    base = Base(800)
     pipes = [Pipe(700)]
     win = pygame.display.set_mode((WIN_WIDTH, WIN_HEIGHT))
     
@@ -232,8 +262,10 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
                 
-        bird.move()
-        draw_window(win, bird, pipes, base)
+        #bird.move()
+        background.move()
+        base.move()
+        draw_window(win, background, bird, pipes, base)
         
     pygame.quit()
     quit()
