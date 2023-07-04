@@ -3,3 +3,98 @@
 Dependencies required:
     • neat-python
     • pygame
+
+
+
+IA:
+
+Inputs: Bird Y, Top Pipe, Bottom Pipe
+Ouput: Jump?
+Activation function: TanH
+Population Size: 100
+Fitness Function:  distance (score)
+Max generations: 30
+
+
+Config:
+
+fitness_criterion     = max     → Follow max value/min value.
+fitness_threshold     = 100     → Goal to complete
+pop_size              = 100     → Popilation by generation
+reset_on_extinction   = False   → If reset the values when all population gets extinct.
+
+
+activation_default      = tanh  → Function to activation.
+activation_mutate_rate  = 0.0   → Allows to use others activation fuctions in small groups: 0.1
+activation_options      = tanh  → Which others activation functions for mutation.
+
+
+aggregation_default     = sum
+aggregation_mutate_rate = 0.0
+aggregation_options     = sum
+
+
+bias_init_mean          = 0.0
+bias_init_stdev         = 1.0
+bias_max_value          = 30.0   → Max value to pick
+bias_min_value          = -30.0  → Min value to pick
+bias_mutate_power       = 0.5
+bias_mutate_rate        = 0.7
+bias_replace_rate       = 0.1
+
+
+compatibility_disjoint_coefficient = 1.0
+compatibility_weight_coefficient   = 0.5
+
+
+conn_add_prob           = 0.5       → Add a new connection probability 0.5 = 50%
+conn_delete_prob        = 0.5       → Remove a connection probability
+
+
+enabled_default         = True      → Connections by default active
+enabled_mutate_rate     = 0.01      
+
+feed_forward            = True
+initial_connection      = full      → Full connections to start
+
+
+node_add_prob           = 0.2       → 20% to create a new node.
+node_delete_prob        = 0.2       → 20% to delete a node.
+
+
+num_hidden              = 0
+num_inputs              = 3         → The inputs which requires.
+num_outputs             = 1         → Outputs demanded.
+
+
+response_init_mean      = 1.0
+response_init_stdev     = 0.0
+response_max_value      = 30.0
+response_min_value      = -30.0
+response_mutate_power   = 0.0
+response_mutate_rate    = 0.0
+response_replace_rate   = 0.0
+
+
+weight_init_mean        = 0.0
+weight_init_stdev       = 1.0
+weight_max_value        = 30
+weight_min_value        = -30
+weight_mutate_power     = 0.5
+weight_mutate_rate      = 0.8
+weight_replace_rate     = 0.1
+
+[DefaultSpeciesSet]
+compatibility_threshold = 3.0
+
+[DefaultStagnation]
+species_fitness_func = max
+max_stagnation       = 20       → Quantity to eliminate or not a spicy
+species_elitism      = 2
+
+[DefaultReproduction]
+elitism            = 2
+survival_threshold = 0.2
+
+
+https://neat-python.readthedocs.io/en/latest/config_file.html
